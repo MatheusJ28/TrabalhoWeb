@@ -34,6 +34,11 @@
                             <button class="btn btn-secondary w-100" type="submit">LOGIN</button>
                         </div>
                         </form>
+                        @if(session('login_error'))
+                            <div class="alert alert-danger text-center">
+                                {{ session('login_error') }}
+                            </div>
+                        @endif
                         {{-- @if($errors->any())
                             <div class="alert alert-danger mt-3">
                                 <ol class="m-0">
