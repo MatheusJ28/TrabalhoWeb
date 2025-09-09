@@ -31,7 +31,7 @@ class AuthController extends Controller
             'text_password.required' => 'A senha é obrigatória!',
             'text_password.min' => 'A senha deve ter pelo menos :min caracteres',
             'text_password.max' => 'A senha deve ter no máximo :max caracteres',
-        ]
+        ]   
     );
 
         $username = $request->input('text_username');
