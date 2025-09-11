@@ -61,14 +61,33 @@ class AuthController extends Controller
                 ->withInput() //preservar os dados
                 ->with('login_error','Username ou password incorretos.');
         }
-        echo '<pre>';
-        print_r($usuario);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($usuario);
+        // echo '</pre>';
 
+        if(!password_verify($password, $usuario->password)){
+            return redirect()->back()
+            ->withInput()
+            ->with('login_error','Username ou password incorretos.');
+        }
+
+        $usuario->last_login = Date('Y-m-d H:i:s');
+        $usuario->save();
+
+        session([
+            'user' => [
+                'id' => $usuario->id,
+                'username' => $usuario->username
+            ]
+            ]);
+
+            echo "Login realizado";
     }
 
     //Método para fazer logout
     public function logout(){
-        echo 'logout';
+        session()->forget('user');
+        return redirect()->route('login');
     }
 }
+

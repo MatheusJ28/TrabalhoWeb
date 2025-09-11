@@ -2,15 +2,14 @@
 
 @section('content')
 
-
 <div class="container mt-5">
 
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-8">
             <div class="card p-5" style="background: linear-gradient(to top, #f3309b, #0a0c33); border: 2px solid #8cfffb;">
                 <div class="text-center p-3">
-                    <img src="assets/images/logoo.png" height="150" width="150" alt="Notes Logo">
-                    <h1 style="color: #00a8f3;">LotusMangas</h1>
+                    <img src="assets/images/logoo.png" height="150" width="150" alt="Logo">
+                    <h1 style="color: #8cfffb;">LotusMangas</h1>
                 </div>
 
                 <!-- Form -->
@@ -38,7 +37,7 @@
                         </div>
                         </form>
                         @if(session('login_error'))
-                            <div class="alert alert-warning text-center" style="background-color: #00a8f3; color: #0d1b2a;">
+                            <div class="alert alert-warning text-center" style="background-color: #ffffff; color: #ff005d; font-weight: bold;">
                                 {{ session('login_error') }}
                             </div>
                         @endif
@@ -55,7 +54,7 @@
                 </div>
 
                 <div class="text-center" style="color: #add8e6;">
-                    <small>&copy; <?= date('Y') ?> Notes</small>
+                    <small>&copy; <?= date('Y') ?> LotusMangas</small>
                 </div>
 
             </div>
