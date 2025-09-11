@@ -1,22 +1,20 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    //Método para fazer login
     public function login(){
         return view('login');
     }
 
     public function loginSubmit(Request $request){
-        // Validação
+        // Obtendo dados do request
         // dd($request);
 
         $request->validate([
@@ -24,25 +22,27 @@ class AuthController extends Controller
             'text_password' => 'required|min:6|max:12',
         ],
         [
-            //Mensagem para username
-            'text_username.required' => 'O campo de e-mail é obrigatório!',
-            'text_username.email' => 'O campo de e-mail deve conter um endereço válido!',
+            //Mensagem para text_username
+            'text_username.required' => 'O campo de e-mail é obrigatório',
+            'text_username.email' => 'O campo de e-mail deve conter um endereço válido',
 
-            'text_password.required' => 'A senha é obrigatória!',
+            //Mensagem para text_password
+            'text_password.required' => 'A senha é obrigatória',
             'text_password.min' => 'A senha deve ter pelo menos :min caracteres',
             'text_password.max' => 'A senha deve ter no máximo :max caracteres',
+
         ]
     );
 
         $username = $request->input('text_username');
         $password = $request->input('text_password');
         // return "OK";
-        // echo "Usuário: " .$username . "<br>";
-        // echo "Password: " .$password;
+        // echo "Usuário: " . $username . "<BR>";
+        // echo "Password: " . $password;
 
         // try{
         //     DB::connection()->getPdo();
-        //     echo "Conexão feita com sucesso!";
+        //     echo "Conexão com o banco de dados feita com sucesso!";
         // } catch(\PDOException $e){
         //     echo "A conexão falhou: " . $e->getMessage();
         // }
@@ -61,14 +61,35 @@ class AuthController extends Controller
                 ->withInput() //preservar os dados
                 ->with('login_error','Username ou password incorretos.');
         }
-        echo '<pre>';
-        print_r($usuario);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($usuario);
+        // echo '</pre>';
+        if(!password_verify($password, $usuario->password)){
+            return redirect()->back()
+                             ->withInput()
+                             ->with('login_error','Username ou password incorretos.');
+        }
+
+        $usuario->last_login = Date('Y-m-d H:i:s');
+        $usuario->save(); //Atualizando o banco de dados
+
+        session([
+            'user' => [
+                'id' => $usuario->id,
+                'username' => $usuario->username
+            ]
+            ]);
+        
+            echo "Login realizado com sucesso!";
 
     }
 
-    //Método para fazer logout
+
+
     public function logout(){
-        echo 'logout';
+        session()->forget('user');
+        return redirect()->route('login');
     }
+
+
 }
