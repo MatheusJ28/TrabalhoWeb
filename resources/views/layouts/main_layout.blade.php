@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -16,4 +16,4 @@
 
     <script src=" {{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
 </body>
-</html>
+</html> -->
