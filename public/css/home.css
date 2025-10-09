@@ -1,0 +1,187 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1b1b1b;
+    padding: 10px 30px;
+    border-bottom: 10px solid #2a2a2a;
+    position: fixed;
+    gap: 15px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+}
+
+.label {
+    width: 280px; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    display: block;
+}
+
+.img_row .label {
+    width: 300px;
+    background-color: #1b1b1b;
+    display: flex;
+    border-top: solid 5px #1b1b1b;
+    border-left: solid 5px #1b1b1b;
+    border-right: solid 5px #1b1b1b;
+    border-bottom: solid 5px #1b1b1b;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.img_row .label:hover {
+    transform: scale(1.1);
+}
+
+.label a img {
+    width: 280px;
+    height: 415px; 
+    object-fit: cover;
+}
+
+.img_row .label img {
+    padding: 10px 10px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.label .text h2 {
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.label .text h3 {
+    font-size: 20px; 
+    color: #ffffff;
+    margin-top: 5px;
+}
+
+.label .text h2 {
+    font-size: 18px; 
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.text {
+    margin-left: 8px;
+}
+
+.img_row .label .text {
+    margin-top: 2px;
+}
+
+.img_row {
+    margin-top: 30px;
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+h1 {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #00d1d9;
+}
+
+.img_row .label h2 {
+    color: #ffffff;
+}
+
+.logo_h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    margin-top: 8px;
+    height: 55px;
+    width: 55px;
+    object-fit: contain;
+}
+
+
+.header_align {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.divBusca {
+    background-color: #E0EEEE;
+    border: solid 3px #b0e6e6;
+    border-radius: 10px;
+    width: 360px;
+    height: 32px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.divBusca:hover {
+    border: solid 3px #2aadad;
+}
+
+.divBusca img {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.txtBusca {
+    flex: 1;
+    background-color: transparent;
+    padding-left: 5px;
+    font-size: 16px;
+    border: none;
+    height: 100%;
+    outline: none;
+}
+
+.btnBusca {
+    margin-left: 10px;
+    border: none;
+    height: 100%;
+    width: 100px;
+    font-weight: bold;
+    background: #1567ff;
+    color: white;
+    cursor: pointer;
+}
+
+.btnBusca:hover {
+    background-color: #0050e4;
+}
+
+.btnLogout {
+    height: 35px;
+    width: 100px;
+    border: solid 3px #b0e6e6;
+    border-radius: 7px;
+    background: #1567ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnLogout:hover {
+    border: solid 3px #2aadad;
+    background-color: #0050e4;
+}
+
+body {
+    margin: 0;
+    padding-top: 80px;
+    font-family: Arial, sans-serif;
+    background-color: #393939;
+}

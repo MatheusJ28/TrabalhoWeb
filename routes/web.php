@@ -21,6 +21,11 @@ Route::middleware([CheckIsLogged::class])->group(
     Route::GET('/', [MainController::class, 'index'])->name('home');
     Route::GET('/new-note', [MainController::class, 'newNote'])->name('new');
     Route::GET('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::GET('/obra1', [MainController::class, 'obra1'])->name('obra1');
+    Route::GET('/obra2', [MainController::class, 'obra2'])->name('obra2');
+    Route::GET('/obra3', [MainController::class, 'obra3'])->name('obra3');
+    Route::GET('/obra4', [MainController::class, 'obra4'])->name('obra4');
+    Route::GET('/search', [MainController::class, 'index'])->name('search');
 });
 
 
