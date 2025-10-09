@@ -77,6 +77,20 @@ h2 {
     margin-bottom: 25px;
 }
 
+.delete_container {
+    display: flex;
+    gap: 25px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    margin-left: 50px;
+}
+
+.img_del {
+    max-width: 60;
+    max-height: 60;
+    object-fit: cover;
+}
+
 .info_genres {
     margin-bottom: 0;
 }

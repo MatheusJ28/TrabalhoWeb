@@ -65,28 +65,20 @@
         </div>
 
         <div class="chapters_container">
-            <div class="chapters_list">
+        <div class="chapters_list">
 
-                <div class="chapter_item">
+            <div class="chapter_item">
+                <a href="{{ route('obra1_cap1') }}">
                     <span class="chapter_number">Capítulo 1</span>
-                </div>
+                </a>
+            </div>
 
-                <div class="chapter_item">
+            <div class="chapter_item">
+                <a href="{{ route('obra1_cap2') }}">
                     <span class="chapter_number">Capítulo 2</span>
-                </div>
-
-                <div class="chapter_item">
-                    <span class="chapter_number">Capítulo 3</span>
-                </div>
-
-                <div class="chapter_item">
-                    <span class="chapter_number">Capítulo 4</span>
-                </div>
-
-                <div class="chapter_item">
-                    <span class="chapter_number">Capítulo 5</span>
-                </div>
+                </a>
             </div>
         </div>
+    </div>
     </body>
 </html>

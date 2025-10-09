@@ -38,68 +38,77 @@
 
     </header>
 
-    {{-- <div class="img_row">
-        <div class="label">
-            <a href=" {{ route('obra1') }} ">
-                <img src="{{ asset('assets/images/visionsOfV.jpg') }}" alt="V" height="415" width="280">
-            </a>
-            <div class="text">
-                <h3>
-                    Devil May Cry 5 - Visions Of V -
-                </h3>
-                <h2>
-                    ☆ 9.25
-                </h2>
-            </div>
-        </div>
-
-        <div class="label">
-            <a href="{{ route('obra2') }}">
-                <img src="{{ asset('assets/images/wcnkl.jpg') }}" alt="NKL" class="fix_img" height="415"
-                    width="280">
-            </a>
-            <div class="text">
-                <h3>
-                    Webtoon Character Na Kang Lim
-                </h3>
-                <h2>
-                    ☆ 9.44
-                </h2>
-            </div>
-        </div>
-
-        <div class="label">
-            <a href="{{ route('obra3') }}">
-                <img src="{{ asset('assets/images/lookback.jpg') }}" alt="lb" class="fix_img" height="415"
-                    width="280">
-            </a>
-            <div class="text">
-                <h3>
-                    Look Back
-                </h3>
-                <h2>
-                    ☆ 9.25
-                </h2>
-            </div>
-        </div>
-
-        <div class="label">
-            <a href="{{ route('obra4') }}">
-                <img src="{{ asset('assets/images/tokyoghoul.jpg') }}" alt="tg" class="fix_img" height="415"
-                    width="280">
-            </a>
-            <div class="text">
-                <h3>
-                    Tokyo Ghoul
-                </h3>
-                <h2>
-                    ☆ 9.23
-                </h2>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="img_row">
+
+        @if (session('success'))
+            <div class="alert success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @foreach ($obras as $obra)
+            <div class="label">
+
+                <a href="{{ route('obra.show', $obra->titulo) }}">
+
+                    <img src="{{ asset($obra->capa_url) }}" alt="{{ $obra->titulo }}" height="415" width="280">
+                </a>
+
+                <div class="text">
+                    <h2>
+                        {{ $obra->titulo }}
+                    </h2>
+                    <h3>
+                        ☆ {{ number_format($obra->nota, 2) }}
+                    </h3>
+                </div>
+
+            </div>
+        @endforeach
+
+        @empty($obras)
+            @if (request('nome'))
+                <p class="no-results">Nenhuma obra encontrada para "{{ request('nome') }}"</p>
+            @else
+                <p class="no-results">Nenhuma obra cadastrada no momento.</p>
+            @endif
+        @endempty
+
+        <div class="add_obra">
+            <form action="{{ route('obra.create') }}" method="GET">
+                <button type="submit" class="txt_add">+</button>
+            </form>
+        </div>
+
+        <div class="obras_list_container">
+            <h2>Catálogo de Obras</h2>
+
+            @foreach ($obras as $obra)
+                <div class="obra_item">
+                    <div class="obra_info">
+                        <h3>{{ $obra->titulo }}</h3>
+                        <p>Autor: {{ $obra->autor }}</p>
+                    </div>
+
+                    <div class="delete_container">
+                        <form action="{{ route('obra.destroy', $obra->titulo) }}" method="POST"
+                            onsubmit="return confirm('Deseja apagar a obra {{ $obra->titulo }}?');">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="delete_button_icon">
+                                <img src="{{ asset('assets/images/lixeira.png') }}" alt="Apagar Obra" class="img_del">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+            @endforeach
+        </div>
+
+    </div>
+
+    {{-- <div class="img_row">
 
         @foreach ($obras as $obra)
             <div class="label">
@@ -138,7 +147,7 @@
             @endif
         @endempty
 
-    </div>
+    </div> --}}
 </body>
 
 </html>

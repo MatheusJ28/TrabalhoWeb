@@ -8,15 +8,13 @@ use App\Models\Obra;
 use Illuminate\Support\Str; 
 
 
-class ObraSeeder extends Seeder
+class ObrasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Obra::truncate();
-
         $obras = [
             [
                 'titulo' => 'Devil May Cry 5 - Visions Of V -',

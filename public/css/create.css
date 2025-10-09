@@ -1,0 +1,138 @@
+header {
+    display: flex;
+    align-items: center;
+    background-color: #1b1b1b;
+    padding: 10px 30px;
+    border-bottom: 18px solid #2a2a2a;
+    position: fixed;
+    gap: 15px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+}
+
+.logo_h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    margin-top: 8px;
+    height: 55px;
+    width: 55px;
+    object-fit: contain;
+}
+
+h2 {
+    margin: 30px 0 20px 0; /* Adicionando espaço entre o h2 e o formulário */
+    text-align: center;
+    color: #00d1d9;
+    font-size: 28px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #2e2e2e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #393939;
+    margin: 50px;
+    padding-top: 80px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    margin: 0;
+    color: #00d1d9;
+    margin-bottom: 10px; 
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #2e2e2e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #2e2e2e;
+    color: white;
+    font-size: 14px;
+}
+
+input[type="number"] {
+    width: 100%;
+}
+
+small {
+    color: #999;
+    font-size: 0.85em;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #f44336;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.alert-error {
+    color: #d8000c;
+    background-color: #ffd2d2;
+    border: 1px solid #d8000c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+ul li {
+    margin-bottom: 5px;
+}

@@ -3,20 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../public/css/obra1.css">
+        <link rel="stylesheet" href="../../public/css/obra.css">
         <title>Obra</title>
     </head>
     <body>
         <header>
             <div class="logo_h1">
-                <img src="../../public/assets/images/logoo.png" alt="logo"
+                <img src="{{ asset('assets/images/logoo.png') }}" alt="logo"
                     class="logo">
-                <h1>Lotus Mangas</h1>
+                <a href="{{ route('home') }}">
+                    <h1>Lotus Mangas</h1>
+                </a>
+                
             </div>
         </header>
 
         <div class="img_row">
-            <img src="../../public/assets/images/visionsOfV.jpg" alt="vofv"
+            <img src="{{ asset('assets/images/visionsOfV.jpg') }}" alt="vofv"
                 class="img_v">
 
             <div class="text_column">
@@ -59,6 +62,12 @@
 
                 </div>
             </div>
+            <div class="delete_container"> 
+                <form action="">
+                    <img src="../../public/assets/images/lixeira.png" alt="del">
+                </form>
+            </div>
+
         </div>
 
         <div class="chapters_container">
