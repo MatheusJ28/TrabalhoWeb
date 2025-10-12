@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>LotusMangas - Login</title>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
   </head>
   <body>
 

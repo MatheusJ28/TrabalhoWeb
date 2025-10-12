@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ObrasTableSeeder::class,
             CapsTableSeeder::class,
+            ChapterImageSeeder::class,
         ]);
     }
 }

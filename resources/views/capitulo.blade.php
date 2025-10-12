@@ -1,58 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/leitor.css') }}">
-    <title>{{ isset($obra) ? $obra->titulo : 'Obra Não Encontrada' }} - Capítulo {{ isset($capitulo) ? $capitulo->numero : 'N/A' }}</title>
-    <style>
-        body {
-            background-color: #1a202c;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .page-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto 5px auto;
-            border-radius: 4px;
-        }
-    </style>
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
+    <title>{{ $obra->titulo }} - Capítulo {{ $capitulo->numero }}</title>
 </head>
+
 <body>
 
-    @if(!isset($obra) || !isset($capitulo))
-        <p>Erro: Obra ou capítulo não encontrados.</p>
-    @else
-        <header class="header-leitor">
-            <a href="{{ route('obra3', $obra->slug) }}">
-                &larr; Voltar para {{ $obra->titulo }}
+    @php
+        $currentNumber = $capitulo->numero;
+        $totalChapters = $obra->capitulos->count();
+        $isFirst = $currentNumber == 1;
+        $isLast = $currentNumber == $totalChapters;
+        $onlyOne = $totalChapters == 1;
+    @endphp
+
+    <header>
+        <div class="logo_h1">
+            <img src="{{ asset('assets/images/logoo.png') }}" alt="logo" class="logo">
+            <a href="{{ route('home') }}">
+                <h1>Lotus Mangas</h1>
             </a>
-            <h1>
-                Capítulo {{ $capitulo->numero }}: {{ $capitulo->nome ?? 'Nome não disponível' }}
-            </h1>
-            <span></span> <!-- Espaçador para centralizar o título -->
-        </header>
 
-        <main class="leitor-container">
-            @php
-                $imagens = is_string($capitulo->imagens) ? json_decode($capitulo->imagens, true) : $capitulo->imagens;
-            @endphp
+        </div>
+    </header>
 
-            @if (is_array($imagens) && count($imagens) > 0)
-                @foreach ($imagens as $caminho)
-                    <img src="{{ asset($caminho) }}" alt="Página {{ $loop->iteration }}" class="page-image">
-                @endforeach
-            @else
-                <p style="text-align: center;">Nenhuma imagem encontrada para este capítulo.</p>
+    <main class="leitor-container">
+
+        <div class="chapter-info-box">
+            <h3>{{ $obra->titulo }}</h3>
+            <h2>Capítulo {{ $capitulo->numero }}</h2>
+        </div>
+
+        @forelse ($capitulo->imagens as $caminho)
+            <img src="{{ asset(rawurlencode($caminho)) }}" alt="Página {{ $loop->iteration }}" class="page-image">
+        @empty
+            <p style="text-align: center;">Nenhuma imagem encontrada para este capítulo.</p>
+        @endforelse
+
+    </main>
+
+    <footer class="leitor-footer">
+        <div class="nav-buttons">
+
+            @if (!$isFirst)
+                <a href="{{ route('capitulo', [$obra->titulo, $currentNumber - 1]) }}" class="nav-btn prev">
+                    &larr; Capítulo Anterior
+                </a>
+            @elseif (!$onlyOne)
+                <a href="{{ route('obra.show', $obra->titulo) }}" class="nav-btn prev back-to-obra">
+                    Voltar à Obra
+                </a>
             @endif
-        </main>
-    @endif
+            @if ($onlyOne)
+                <a href="{{ route('obra.show', $obra->titulo) }}" class="nav-btn back-to-obra" style="width: 100%;">
+                    Voltar à Obra
+                </a>
+            @endif
+            @if (!$isLast)
+                <a href="{{ route('capitulo', [$obra->titulo, $currentNumber + 1]) }}" class="nav-btn next">
+                    Próximo Capítulo &rarr;
+                </a>
+            @elseif (!$onlyOne)
+                <a href="{{ route('obra.show', $obra->titulo) }}" class="nav-btn next back-to-obra">
+                    Voltar à Obra
+                </a>
+            @endif
+
+        </div>
+    </footer>
 
 </body>
+
 </html>

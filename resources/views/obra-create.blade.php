@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Adicionar Nova Obra - Lotus Mangas</title>
     <link rel="stylesheet" href="{{ asset('css/create.css') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
     </head>
 
 <body>
@@ -51,8 +52,8 @@
 
         <div>
             <label for="capa_url">Caminho da Capa (Asset/URL):</label>
-            <input type="text" id="capa_url" name="capa_url" value="{{ old('capa_url') }}" required>
-            <small>Exemplo: assets/images/capa.jpg</small>
+            <input type="text" id="capa_url" name="capa_url" value="{{ old('capa_url') }}"    required>
+            <small>Exemplo: assets/images/obra.jpg  (1 - 15)</small>
         </div>
         
         <div>

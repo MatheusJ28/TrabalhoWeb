@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Capitulo;
 
 class Obra extends Model
 {
@@ -15,7 +16,7 @@ class Obra extends Model
         'slug',
     ];
 
-    // public function capitulos(){
-    //     return $this.hasMany(Capitulo::class)
-    // }
+    public function capitulos(){
+        return $this->hasMany(Capitulo::class);
+    }
 }
