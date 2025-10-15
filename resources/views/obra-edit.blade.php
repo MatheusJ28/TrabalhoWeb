@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Editar {{ $obra->titulo }}</title>
+    <title>Editar {{ $obra->slug }}</title>
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
 </head>
@@ -21,7 +21,7 @@
     <div class="obra_container">
         <h1>Editar Obra: {{ $obra->titulo }}</h1>
 
-        <form action="{{ route('obra.update', $obra->titulo) }}" method="POST" class="edit-form">
+        <form action="{{ route('obra.update',  $obra->slug) }}" method="POST" class="edit-form">
             @csrf
             @method('PUT')
 
@@ -51,7 +51,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="save-btn">Salvar Alterações</button>
-                <a href="{{ route('obra.show', $obra->titulo) }}" class="cancel-btn">Cancelar</a>
+                <a href="{{ route('obra.show', $obra->slug) }}" class="cancel-btn">Cancelar</a>
             </div>
         </form>
     </div>

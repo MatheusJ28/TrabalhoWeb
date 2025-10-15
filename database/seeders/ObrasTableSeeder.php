@@ -17,7 +17,7 @@ class ObrasTableSeeder extends Seeder
     {
         $obras = [
             [
-                'titulo' => 'Devil May Cry 5 - Visions Of V -',
+                'titulo' => 'Devil May Cry 5 Visions Of V',
                 'autor' => 'Tomio Ogata',
                 'nota' => 9.25,
                 'capa_url' => 'assets/images/visionsOfV.jpg',

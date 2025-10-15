@@ -56,9 +56,9 @@
         @foreach ($obras as $obra)
             <div class="label">
 
-                <a href="{{ route('obra.show', $obra->titulo) }}">
+                <a href="{{ route('obra.show', $obra->slug) }}">
 
-                    <img src="{{ asset($obra->capa_url) }}" alt="{{ $obra->titulo }}" height="415" width="280">
+                    <img src="{{ asset($obra->capa_url) }}" alt="{{ $obra->slug }}" height="415" width="280">
                 </a>
 
                 <div class="text">
@@ -105,8 +105,8 @@
                                 </div>
 
                                 <div class="delete_container">
-                                    <form action="{{ route('obra.destroy', $obra->titulo) }}" method="POST"
-                                        onsubmit="return confirm('Deseja apagar a obra {{ $obra->titulo }}?');">
+                                    <form action="{{ route('obra.destroy', $obra->slug) }}" method="POST"
+                                        onsubmit="return confirm('Deseja apagar a obra {{ $obra->slug }}?');">
                                         @csrf
                                         @method('DELETE')
 

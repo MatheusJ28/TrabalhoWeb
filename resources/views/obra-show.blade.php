@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ $obra->titulo }}</title>
+    <title>{{ $obra->slug}}</title>
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
 </head>
@@ -21,7 +21,7 @@
 
     <div class="obra_container">
         <div class="obra_header">
-            <img src="{{ asset($obra->capa_url) }}" alt="{{ $obra->titulo }}" class="obra_capa">
+            <img src="{{ asset($obra->capa_url) }}" alt="{{ $obra->slug }}" class="obra_capa">
             <div class="obra_info">
                 <h1>{{ $obra->titulo }}</h1>
                 <div class="obra_details_bottom">
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <a href="{{ route('obra.edit', $obra->titulo) }}" class="edit_button">
+        <a href="{{ route('obra.edit', $obra->slug) }}" class="edit_button">
             <img src="{{ asset('assets/images/funcoes/edit.png') }}" alt="" class="img_edit">
         </a>
 
@@ -42,7 +42,7 @@
 
             @forelse ($obra->capitulos as $capitulo)
                 <div class="capitulo_item">
-                    <a href="{{ route('capitulo', [$obra->titulo, $capitulo->numero]) }}" class="chapter_link">
+                    <a href="{{ route('capitulo', [$obra->slug, $capitulo->numero]) }}" class="chapter_link">
                         <div class="chapter_item">
                             <span class="chapter_number">Cap. {{ $capitulo->numero }}:</span>
                             <span>{{ $capitulo->nome }}</span>

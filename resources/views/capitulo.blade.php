@@ -48,25 +48,25 @@
         <div class="nav-buttons">
 
             @if (!$isFirst)
-                <a href="{{ route('capitulo', [$obra->titulo, $currentNumber - 1]) }}" class="nav-btn prev">
+                <a href="{{ route('capitulo', [$obra->slug, $currentNumber - 1]) }}" class="nav-btn prev">
                     &larr; Capítulo Anterior
                 </a>
             @elseif (!$onlyOne)
-                <a href="{{ route('obra.show', $obra->titulo) }}" class="nav-btn prev back-to-obra">
+                <a href="{{ route('obra.show', $obra->slug) }}" class="nav-btn prev back-to-obra">
                     Voltar à Obra
                 </a>
             @endif
             @if ($onlyOne)
-                <a href="{{ route('obra.show', $obra->titulo) }}" class="nav-btn back-to-obra" style="width: 100%;">
+                <a href="{{ route('obra.show', $obra->slug) }}" class="nav-btn back-to-obra" style="width: 100%;">
                     Voltar à Obra
                 </a>
             @endif
             @if (!$isLast)
-                <a href="{{ route('capitulo', [$obra->titulo, $currentNumber + 1]) }}" class="nav-btn next">
+                <a href="{{ route('capitulo', [$obra->slug, $currentNumber + 1]) }}" class="nav-btn next">
                     Próximo Capítulo &rarr;
                 </a>
             @elseif (!$onlyOne)
-                <a href="{{ route('obra.show', $obra->titulo) }}" class="nav-btn next back-to-obra">
+                <a href="{{ route('obra.show', $obra->slug) }}" class="nav-btn next back-to-obra">
                     Voltar à Obra
                 </a>
             @endif

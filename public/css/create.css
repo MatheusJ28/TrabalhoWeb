@@ -32,15 +32,6 @@ h2 {
     font-size: 28px;
 }
 
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #2e2e2e;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
 body {
     font-family: Arial, sans-serif;
     background-color: #393939;
@@ -52,7 +43,7 @@ body {
 h1 {
     margin: 0;
     color: #00d1d9;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 form {
@@ -73,9 +64,11 @@ label {
 
 input[type="text"],
 input[type="number"] {
+    box-sizing: border-box;
+    display: block;
     width: 100%;
+    margin: 0 0 15px 0;
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #2e2e2e;
@@ -95,17 +88,18 @@ small {
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #4caf50;
+    background-color: #00d1d9;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
+    justify-content: center;
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #00a7ac;
 }
 
 a {

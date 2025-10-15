@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Obra;
 use App\Models\Capitulo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MainController extends Controller
 {
@@ -26,9 +27,9 @@ class MainController extends Controller
         return view('home', compact('obras'));
     }
 
-    public function destroy(string $titulo)
+    public function destroy(string $slug)
     {
-        $obra = Obra::where('titulo', $titulo)->firstOrFail();
+        $obra = Obra::where('slug', $slug)->firstOrFail();
 
         $obra->delete();
 
@@ -50,7 +51,11 @@ class MainController extends Controller
         ]);
 
         try {
-            Obra::create($request->all());
+            $dados = $request->all();
+
+            $dados['slug'] = Str::slug($request->titulo);
+
+            Obra::create($dados);
 
             return redirect()->route('home');
         } catch (\Exception $e) {
@@ -58,10 +63,10 @@ class MainController extends Controller
         }
     }
 
-    public function show(string $obraTitulo)
+    public function show(string $slug)
     {
-        $obraTitulo = trim($obraTitulo);
-        $obra = Obra::where('titulo', $obraTitulo)
+        $slug = trim($slug);
+        $obra = Obra::where('slug', $slug)  
             ->with(['capitulos' => function ($query) {
                 $query->orderBy('numero', 'asc');
             }])
@@ -70,10 +75,9 @@ class MainController extends Controller
         return view('obra-show', compact('obra'));
     }
 
-    public function capitulo(string $obraTitulo, int $numero)
+    public function capitulo(string $slug, int $numero)
     {
-        $obraTitulo = trim($obraTitulo);
-        $obra = Obra::where('titulo', $obraTitulo)->firstOrFail();
+        $obra = Obra::where('slug', $slug)->firstOrFail();
         $capitulo = Capitulo::where('obra_id', $obra->id)
             ->where('numero', $numero)
             ->firstOrFail();
@@ -81,15 +85,15 @@ class MainController extends Controller
         return view('capitulo', compact('obra', 'capitulo'));
     }
 
-    public function edit($titulo)
+    public function edit($slug)
     {
-        $obra = Obra::where('titulo', $titulo)->firstOrFail();
+        $obra = Obra::where('slug', $slug)->firstOrFail();
         return view('obra-edit', compact('obra'));
     }
 
-    public function update(Request $request, $titulo)
+    public function update(Request $request, $slug)
     {
-        $obra = Obra::where('titulo', $titulo)->firstOrFail();
+        $obra = Obra::where('slug', $slug)->firstOrFail();
         $request->validate([
             'titulo' => 'required|string|max:255|unique:obras,titulo,' . $obra->id,
             'autor' => 'required|string|max:255',
@@ -102,6 +106,6 @@ class MainController extends Controller
 
         $obra->save();
 
-        return redirect()->route('obra.show', $obra->titulo);
+        return redirect()->route('obra.show', $obra->slug);
     }
 }

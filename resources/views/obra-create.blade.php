@@ -37,7 +37,7 @@
     <form action="{{ route('obra.store') }}" method="POST">
         @csrf <div>
             <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo" value="{{ old('titulo') }}" required>
+            <input type="text" id="slug" name="titulo" value="{{ old('slug') }}" required>
         </div>
 
         <div>
