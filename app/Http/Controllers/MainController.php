@@ -27,7 +27,7 @@ class MainController extends Controller
         return view('home', compact('obras'));
     }
 
-    public function destroy(string $slug)
+    public function destroy($slug)
     {
         $obra = Obra::where('slug', $slug)->firstOrFail();
 

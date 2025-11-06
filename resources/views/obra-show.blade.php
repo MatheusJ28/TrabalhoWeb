@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ $obra->slug}}</title>
+    <title>{{ $obra->slug }}</title>
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
 </head>
@@ -34,6 +34,16 @@
         <a href="{{ route('obra.edit', $obra->slug) }}" class="edit_button">
             <img src="{{ asset('assets/images/funcoes/edit.png') }}" alt="" class="img_edit">
         </a>
+
+        <form action="{{ route('obra.destroy', $obra->slug) }}" method="POST" class="delete_button">
+            @csrf
+
+            @method('DELETE')
+
+            <button type="submit" style="border: none; background: none; padding: 0;">
+                <img src="{{ asset('assets/images/funcoes/lixeira.png') }}" alt="Excluir" class="img_delete">
+            </button>
+        </form>
 
         <hr>
 

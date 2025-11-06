@@ -294,7 +294,7 @@ hr {
 
 .edit_button {
     position: fixed;
-    bottom: 30px;
+    bottom: 150px;
     right: 30px;
     width: 100px;
     height: 100px;
@@ -329,6 +329,44 @@ hr {
     line-height: 1;
 }
 
+.delete_button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #1b1b1b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    overflow: hidden;
+    z-index: 50;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete_button:hover {
+    background-color: #2a2a2a;
+    transform: scale(1.2); 
+    box-shadow: 0 0 25px rgba(0, 209, 217, 0.5);
+
+    .img_delete {
+        filter: invert(100%);
+    }
+}
+
+.delete_button i,
+.delete_button svg {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+
 @media (max-width: 768px) {
     .edit_button {
         bottom: 20px;
@@ -340,6 +378,12 @@ hr {
 }
 
 .img_edit {
+    width: 80px;
+    height: 80px;
+    filter: invert(50%) sepia(90%) saturate(1000%) hue-rotate(150deg) brightness(120%) contrast(100%);
+}
+
+.img_delete {
     width: 80px;
     height: 80px;
     filter: invert(50%) sepia(90%) saturate(1000%) hue-rotate(150deg) brightness(120%) contrast(100%);
