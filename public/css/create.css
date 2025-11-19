@@ -46,6 +46,10 @@ h1 {
     margin-bottom: 10px;
 }
 
+form > div {
+    margin-bottom: 15px;
+}
+
 form {
     max-width: 600px;
     margin: 0 auto;
@@ -76,13 +80,21 @@ input[type="number"] {
     font-size: 14px;
 }
 
-input[type="number"] {
-    width: 100%;
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #00d1d9;
+    outline: none;
 }
 
 small {
-    color: #999;
+    display: block;
+    color: #999; 
     font-size: 0.85em;
+    margin: 5px 0 15px 0;
+}
+
+input[type="number"] {
+    width: 100%;
 }
 
 button[type="submit"] {
@@ -109,6 +121,11 @@ a {
     color: #f44336;
     text-decoration: none;
     font-size: 16px;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff7961;
 }
 
 .alert-error {
@@ -129,4 +146,43 @@ ul {
 
 ul li {
     margin-bottom: 5px;
+}
+
+.file-upload-container {
+    margin-bottom: 20px;
+}
+
+.hidden-file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.custom-file-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00d1d9;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px; 
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.custom-file-upload-button:hover {
+    background-color: #00a7ac;
+}
+
+#file-name-display {
+    display: block;
+    margin-top: 5px;
+    color: #b0b0b0; 
+    font-size: 0.9em;
 }

@@ -26,7 +26,7 @@
                 <h1>{{ $obra->titulo }}</h1>
                 <div class="obra_details_bottom">
                     <p class="obra_autor"><strong>Autor:</strong> {{ $obra->autor }}</p>
-                    <p class="obra_nota"><strong>Nota:</strong> ☆ {{ number_format($obra->nota, 2) }} / 10</p>
+                    <p class="obra_nota"><strong>Nota:</strong> ☆ {{ number_format($obra->nota, 1) }} / 10</p>
                 </div>
             </div>
         </div>

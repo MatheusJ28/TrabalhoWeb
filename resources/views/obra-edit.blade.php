@@ -42,6 +42,14 @@
             </div>
 
             <div class="form-group">
+                <label for="nota">Nota:</label>
+                <input type="number" step="0.1" min="0" max="10" id="nota" name="nota" value="{{ old('nota', $obra->nota) }}" required>
+                @error('nota')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="capa_url">URL da Capa:</label>
                 <input type="text" id="capa_url" name="capa_url" value="{{ old('capa_url', $obra->capa_url) }}" required>
                 @error('capa_url')

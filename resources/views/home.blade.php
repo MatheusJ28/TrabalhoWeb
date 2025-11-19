@@ -66,7 +66,7 @@
                         {{ $obra->titulo }}
                     </h2>
                     <h3>
-                        ☆ {{ number_format($obra->nota, 2) }}
+                        ☆ {{ number_format($obra->nota, 1) }}
                     </h3>
                 </div>
 

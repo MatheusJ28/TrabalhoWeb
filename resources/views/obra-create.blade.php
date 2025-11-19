@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Nova Obra - Lotus Mangas</title>
     <link rel="stylesheet" href="{{ asset('css/create.css') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
-    </head>
+</head>
 
 <body>
 
     <header>
-            <div class="logo_h1">
-                <img src="{{ asset('assets/images/logoo.png') }}" alt="logo"
-                    class="logo">
-                <a href="{{ route('home') }}">
-                    <h1>Lotus Mangas</h1>
-                </a>
-                
-            </div>
-        </header>
+        <div class="logo_h1">
+            <img src="{{ asset('assets/images/logoo.png') }}" alt="logo" class="logo">
+            <a href="{{ route('home') }}">
+                <h1>Lotus Mangas</h1>
+            </a>
 
-        
+        </div>
+    </header>
+
+
     <h2>Adicionar Nova Obra</h2>
 
     @if ($errors->any())
@@ -33,7 +33,7 @@
             </ul>
         </div>
     @endif
-
+    {{-- 
     <form action="{{ route('obra.store') }}" method="POST">
         @csrf <div>
             <label for="titulo">Título:</label>
@@ -60,6 +60,60 @@
             <button type="submit">Salvar Obra</button>
             <a href="{{ route('home') }}">Cancelar</a>
         </div>
+    </form> --}}
+    <form action="{{ route('obra.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <div>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" value="{{ old('titulo') }}" required>
+        </div>
+
+        <div>
+            <label for="autor">Autor:</label>
+            <input type="text" id="autor" name="autor" value="{{ old('autor') }}" required>
+        </div>
+
+        <div>
+            <label for="nota">Nota (0 a 10):</label>
+            <input type="number" step="0.1" id="nota" name="nota" step="0.01" min="0" max="10"
+                value="{{ old('nota') }}" required>
+        </div>
+
+        <div class="file-upload-container">
+            <label for="capa_url" class="custom-file-upload-button">
+                Escolher Imagem de Capa
+            </label>
+            <input type="file" id="capa_url" name="capa_url" required class="hidden-file-input">
+
+            <small id="file-name-display">Nenhum arquivo selecionado.</small>
+        </div>
+
+        <div>
+            <button type="submit">Salvar Obra</button>
+            <a href="{{ route('home') }}">Cancelar</a>
+        </div>
     </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('capa_url');
+            const fileNameDisplay = document.getElementById('file-name-display');
+
+            if (fileInput && fileNameDisplay) {
+                fileInput.addEventListener('change', function() {
+
+                    if (fileInput.files.length > 0) {
+                        const nomeArquivo = fileInput.files[0].name;
+
+                        fileNameDisplay.textContent = `Arquivo selecionado: ${nomeArquivo}`;
+
+                    } else {
+                        fileNameDisplay.textContent = 'Nenhum arquivo selecionado.';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>

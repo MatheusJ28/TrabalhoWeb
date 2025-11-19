@@ -47,26 +47,34 @@ class MainController extends Controller
             'titulo' => 'required|string|max:255|unique:obras,titulo',
             'autor' => 'required|string|max:255',
             'nota' => 'required|numeric|min:0|max:10',
-            'capa_url' => 'required|string',
+            'capa_url' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        try {
-            $dados = $request->all();
+        $dadosObra = $request->except('capa_url');
 
-            $dados['slug'] = Str::slug($request->titulo);
+        if ($request->hasFile('capa_url')) {
+            $imagem = $request->file('capa_url');
 
-            Obra::create($dados);
-
-            return redirect()->route('home');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput();
+            $caminhoDestino = public_path('assets/images');
+            $proximoId = Obra::count() + 1;
+            $extensao = $imagem->getClientOriginalExtension();
+            $nomeBase = 'obra_' . $proximoId;
+            $nomeArquivo = $nomeBase . '.' . $extensao;
+            $imagem->move($caminhoDestino, $nomeArquivo);
+            $caminhoRelativo = 'assets/images/' . $nomeArquivo;
+            $dadosObra['capa_url'] = $caminhoRelativo;
         }
+
+        Obra::create($dadosObra);
+
+        return redirect()->route('home');
     }
+
 
     public function show(string $slug)
     {
         $slug = trim($slug);
-        $obra = Obra::where('slug', $slug)  
+        $obra = Obra::where('slug', $slug)
             ->with(['capitulos' => function ($query) {
                 $query->orderBy('numero', 'asc');
             }])
@@ -97,11 +105,13 @@ class MainController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255|unique:obras,titulo,' . $obra->id,
             'autor' => 'required|string|max:255',
+            'nota' => 'required|numeric|min:0|max:10',
             'capa_url' => 'required|string|max:255',
         ]);
 
         $obra->titulo = $request->input('titulo');
         $obra->autor = $request->input('autor');
+        $obra->nota = $request->input('nota');
         $obra->capa_url = $request->input('capa_url');
 
         $obra->save();
