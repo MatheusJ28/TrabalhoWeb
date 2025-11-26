@@ -18,20 +18,26 @@ class Obra extends Model
         'slug',
     ];
 
-    public function capitulos(){
+    public function capitulos()
+    {
         return $this->hasMany(Capitulo::class);
     }
 
     public function setTituloAttribute($value)
     {
         $this->attributes['titulo'] = $value;
-        $this->attributes['slug'] = Str::slug($value); 
+        $this->attributes['slug'] = Str::slug($value);
     }
 
     protected function capaUrlPublica(): Attribute
     {
         return Attribute::make(
-            get: fn (mixed $value, array $attributes) => url('/') . '/' . $attributes['capa_url'],
+            get: fn(mixed $value, array $attributes) => url('/') . '/' . $attributes['capa_url'],
         );
+    }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'obra_favorites', 'slug', 'user_id')->withTimestamps();
     }
 }

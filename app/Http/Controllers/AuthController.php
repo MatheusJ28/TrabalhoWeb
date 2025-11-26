@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
@@ -74,14 +75,16 @@ class AuthController extends Controller
         $usuario->last_login = date('Y-m-d H:i:s');
         $usuario->save(); // Atualizando o banco de dados
 
-        session([
-            'user' => [
-                'id' => $usuario->id,
-                'username' => $usuario->username,
-            ],
-        ]);
+        // session([
+        //     'user' => [
+        //         'id' => $usuario->id,
+        //         'username' => $usuario->username,
+        //     ],
+        // ]);
 
-        return redirect('/');
+        Auth::login($usuario);
+
+        return redirect()->intended('/');
 
     }
 

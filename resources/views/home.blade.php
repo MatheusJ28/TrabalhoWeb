@@ -40,6 +40,9 @@
                 <button type="submit" class="btnLogout">Logout</button>
             </form>
 
+            <a href="{{ route('profile.show') }}" class="btnClear">
+                <img src="{{ asset('assets/images/funcoes/profile.png') }}" alt="Perfil">
+            </a>
 
         </div>
 

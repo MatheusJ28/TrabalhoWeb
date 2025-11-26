@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckIsNotLogged
@@ -16,7 +17,7 @@ class CheckIsNotLogged
     public function handle(Request $request, Closure $next): Response
     {
         //Verificar se já existe usuário na sessão
-        if(session()->has('user')){
+        if(Auth::check()){
             //Se existir, redireciona para a página principal
             return redirect('/');
         }

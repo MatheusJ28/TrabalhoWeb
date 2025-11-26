@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckIsLogged;
 use App\Http\Middleware\CheckIsNotLogged;
 
@@ -29,5 +30,7 @@ Route::middleware([CheckIsLogged::class])->group(
         Route::get('/capitulo/{slug}/{numero}', [MainController::class, 'capitulo'])->name('capitulo');
         Route::get('/obra/{slug}/editar', [MainController::class, 'edit'])->name('obra.edit');
         Route::put('/obra/{slug}', [MainController::class, 'update'])->name('obra.update');
+        Route::get('/perfil', [ProfileController::class, 'show'])->name('profile.show');
+        Route::post('/perfil', [ProfileController::class, 'update'])->name('profile.update');
     }
 );

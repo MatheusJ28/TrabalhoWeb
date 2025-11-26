@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Obra;
+use App\Models\User;
 use App\Models\Capitulo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
