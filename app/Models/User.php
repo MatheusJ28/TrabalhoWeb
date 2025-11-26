@@ -15,6 +15,6 @@ class User extends Authenticatable
 
     public function favorites()
     {
-        return $this->belongsToMany(Obra::class, 'obra_favorites', 'user_id', 'slug')->withTimestamps();
+        return $this->belongsToMany(Obra::class, 'obra_favorites', 'user_id', 'obra_slug', 'id', 'slug')->withTimestamps();
     }
 }

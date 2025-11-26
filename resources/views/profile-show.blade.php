@@ -53,30 +53,67 @@
             </button>
         </div>
         
-        <div class="profile-details-section">
+        <div class="profile-body-content">
             
-            <div class="profile-detail-card">
-                <div class="detail-label-group">
-                    <strong>Nome de Usuário</strong>
-                    <span>{{ $user->name ?? 'N/A' }}</span>
+            {{-- COLUNA 1: DETALHES DO PERFIL (Esquerda) --}}
+            <div class="profile-details-section">
+                <h3 style="color: #ffffff; border-bottom: 1px solid #2e2e2e; padding-bottom: 10px; margin-bottom: 15px;">
+                    Detalhes do Perfil
+                </h3>
+
+                <div class="profile-detail-card">
+                    <div class="detail-label-group">
+                        <strong>Nome de Usuário</strong>
+                        <span>{{ $user->name ?? 'N/A' }}</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="profile-detail-card">
-                <div class="detail-label-group">
-                    <strong>Descrição</strong>
-                    <span>{{ $user->profile_description ?? 'Nenhuma descrição definida.' }}</span>
+                
+                <div class="profile-detail-card">
+                    <div class="detail-label-group">
+                        <strong>Descrição</strong>
+                        <span>{{ $user->profile_description ?? 'Nenhuma descrição definida.' }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-detail-card">
+                    <div class="detail-label-group">
+                        <strong>Cor de Destaque</strong>
+                        <span>Cor usada na faixa superior e em detalhes do perfil.</span>
+                    </div>
+                    <div class="detail-actions">
+                        <span style="width: 20px; height: 20px; border-radius: 50%; background-color: {{ $user->profile_color ?? '#393939' }}; border: 1px solid #555; display: inline-block; margin-right: 10px;"></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="profile-detail-card">
-                <div class="detail-label-group">
-                    <strong>Cor de Destaque</strong>
-                    <span>Cor usada na faixa superior e em detalhes do perfil.</span>
-                </div>
-                <div class="detail-actions">
-                    <span style="width: 20px; height: 20px; border-radius: 50%; background-color: {{ $user->profile_color ?? '#393939' }}; border: 1px solid #555; display: inline-block; margin-right: 10px;"></span>
-                </div>
+            <div class="profile-details-section">
+                <h3 style="color: #ffffff; border-bottom: 1px solid #2e2e2e; padding-bottom: 10px; margin-bottom: 15px;">
+                    ⭐ Obras Favoritas ({{ $user->favorites->count() }})
+                </h3>
+
+                @forelse ($user->favorites as $obra)
+                    <div class="profile-detail-card">
+                        <div class="detail-label-group">
+                            <strong>{{ $obra->titulo }}</strong>
+                            <span>Autor: {{ $obra->autor }}</span> 
+                        </div>
+                        <div class="detail-actions">
+                            <a href="{{ route('obra.show', $obra->slug) }}">
+                                <button type="button">Ver Obra</button>
+                            </a>
+                            
+                            <form action="{{ route('favorite.remove', $obra->slug) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-remove-favorite" title="Remover dos favoritos">
+                                    X
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @empty
+                    <p style="color: #bbb; text-align: center; padding: 15px;">Nenhuma obra favoritada ainda.</p>
+                @endforelse
             </div>
         </div>
         

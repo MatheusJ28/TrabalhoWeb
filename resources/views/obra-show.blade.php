@@ -28,6 +28,23 @@
                     <p class="obra_autor"><strong>Autor:</strong> {{ $obra->autor }}</p>
                     <p class="obra_nota"><strong>Nota:</strong> ☆ {{ number_format($obra->nota, 1) }} / 10</p>
                 </div>
+                
+                <form action="{{ route('obra.favorite', $obra->slug) }}" method="POST" class="favorite_form">
+                    @csrf
+                    
+                    @auth
+                        <button type="submit" class="btn_favorite {{ $isFavorite ? 'favorited' : 'not_favorited' }}">
+                            @if ($isFavorite)
+                                ⭐ Favoritado
+                            @else
+                                ☆ Favoritar
+                            @endif
+                        </button>
+                    @else
+                        <span class="btn_favorite_guest">Faça login para favoritar</span>
+                    @endauth
+                </form>
+
             </div>
         </div>
 

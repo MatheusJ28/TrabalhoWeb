@@ -10,36 +10,13 @@ class ProfileController extends Controller
 {
     public function show()
     {
+        $user = Auth::user()->load('favorites');
+        
         return view('profile-show', [
-            'user' => Auth::user(),
+            'user' => $user,
         ]);
     }
-
-    // public function update(Request $request)
-    // {
-    //     $user = Auth::user();
-
-    //     $request->validate([
-    //         'profile_description' => 'nullable|string|max:200', 
-    //         'profile_color' => 'required|string|size:7',        
-    //         'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', 
-    //     ]);
-
-    //     $updateData = $request->only(['profile_description', 'profile_color']);
-
-    //     if ($request->hasFile('profile_photo')) {
-    //         $image = $request->file('profile_photo');
-    //         $destinationPath = public_path('assets/images');
-    //         $fileName = 'user_' . $user->id . '.' . $image->getClientOriginalExtension();
-
-    //         $image->move($destinationPath, $fileName);
-
-    //         $updateData['profile_photo_url'] = 'assets/images/' . $fileName; 
-    //     }
-    //     $user->update($updateData);
-
-    //     return redirect()->route('profile.show');
-    // }
+    
     public function update(Request $request)
     {
         $user = Auth::user();

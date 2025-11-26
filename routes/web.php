@@ -32,5 +32,7 @@ Route::middleware([CheckIsLogged::class])->group(
         Route::put('/obra/{slug}', [MainController::class, 'update'])->name('obra.update');
         Route::get('/perfil', [ProfileController::class, 'show'])->name('profile.show');
         Route::post('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('/obra/{slug}/favorite', [MainController::class, 'toggleFavorite'])->name('obra.favorite');
+        Route::delete('/profile/favorites/{slug}', [MainController::class, 'removeFavorite'])->name('favorite.remove');
     }
 );

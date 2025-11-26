@@ -388,3 +388,47 @@ hr {
     height: 80px;
     filter: invert(50%) sepia(90%) saturate(1000%) hue-rotate(150deg) brightness(120%) contrast(100%);
 }
+
+.favorite_form {
+    margin-top: 15px;
+}
+
+.btn_favorite {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid;
+}
+
+.btn_favorite.not_favorited {
+    background-color: transparent;
+    color: #ffd700; 
+    border-color: #ffd700;
+}
+
+.btn_favorite.not_favorited:hover {
+    background-color: #ffd700;
+    color: #1b1b1b;
+}
+
+.btn_favorite.favorited {
+    background-color: #ffd700;
+    color: #1b1b1b;
+    border-color: #ffd700;
+}
+
+.btn_favorite.favorited:hover {
+    background-color: #f1c40f;
+}
+
+.btn_favorite_guest {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #555;
+    color: #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}

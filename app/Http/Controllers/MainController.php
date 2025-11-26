@@ -76,13 +76,22 @@ class MainController extends Controller
     public function show(string $slug)
     {
         $slug = trim($slug);
+
         $obra = Obra::where('slug', $slug)
             ->with(['capitulos' => function ($query) {
                 $query->orderBy('numero', 'asc');
             }])
             ->firstOrFail();
 
-        return view('obra-show', compact('obra'));
+        $isFavorite = false;
+
+        if (Auth::check()) {
+            $isFavorite = Auth::user()->favorites()
+                ->where('obra_slug', $slug)
+                ->exists();
+        }
+
+        return view('obra-show', compact('obra', 'isFavorite'));
     }
 
     public function capitulo(string $slug, int $numero)
@@ -119,5 +128,30 @@ class MainController extends Controller
         $obra->save();
 
         return redirect()->route('obra.show', $obra->slug);
+    }
+
+
+    public function toggleFavorite($slug)
+    {
+        if (!Auth::check()) {
+            return back();
+        }
+
+        $user = Auth::user();
+
+        $user->favorites()->toggle($slug);
+
+        return back();
+    }
+
+    public function removeFavorite($slug)
+    {
+        if (!Auth::check()) {
+            return back();
+        }
+
+        Auth::user()->favorites()->detach($slug);
+
+        return back();
     }
 }
