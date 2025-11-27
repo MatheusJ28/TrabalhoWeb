@@ -95,7 +95,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        session()->forget('user');
+        Auth::logout();
 
         return redirect()->route('login');
     }

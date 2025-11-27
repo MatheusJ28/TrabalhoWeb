@@ -117,13 +117,11 @@ class MainController extends Controller
             'titulo' => 'required|string|max:255|unique:obras,titulo,' . $obra->id,
             'autor' => 'required|string|max:255',
             'nota' => 'required|numeric|min:0|max:10',
-            'capa_url' => 'required|string|max:255',
         ]);
 
         $obra->titulo = $request->input('titulo');
         $obra->autor = $request->input('autor');
         $obra->nota = $request->input('nota');
-        $obra->capa_url = $request->input('capa_url');
 
         $obra->save();
 

@@ -48,15 +48,7 @@
                     <p class="error-message">{{ $message }}</p>
                 @enderror
             </div>
-
-            <div class="form-group">
-                <label for="capa_url">URL da Capa:</label>
-                <input type="text" id="capa_url" name="capa_url" value="{{ old('capa_url', $obra->capa_url) }}" required>
-                @error('capa_url')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
-            </div>
-
+            
             <div class="form-actions">
                 <button type="submit" class="save-btn">Salvar Alterações</button>
                 <a href="{{ route('obra.show', $obra->slug) }}" class="cancel-btn">Cancelar</a>
